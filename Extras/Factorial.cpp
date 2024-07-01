@@ -8,7 +8,7 @@ int main()
     for (int j = numb; j <= 20; j++) // Making 20 columns    
     {
         fact *= j;
-        cout << "!" << left << setw (3) << j << " = " 
+        cout << "!" << j << " = " 
              << fact << endl;
     }
     return 0;
