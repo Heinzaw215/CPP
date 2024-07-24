@@ -40,8 +40,8 @@ int main()
             break;
 
         default:
-            cout << "Invalid operation.";
-            continue;
+            cout << "Invalid operation." << endl;
+            continue; // Skip the giving output
         }
         cout << resultN << "/" << resultD << endl;
         cout << resultN / resultD << endl;
