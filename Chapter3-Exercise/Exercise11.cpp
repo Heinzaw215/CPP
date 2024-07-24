@@ -1,66 +1,65 @@
 #include <iostream>
-#include <iomanip>
 using namespace std;
 
 int main() {
-    char operation;
-    int pounds1, shillings1, pence1;
-    int pounds2, shillings2, pence2;
+    char operate, dot;
+    int fPound, fShilling, fPence;
+    int sPound, sShilling, sPence;
     float multiplier;
 
     cout << "Enter the operation (+, -, *): ";
-    cin >> operation;
+    cin >> operate;
 
     cout << "Enter first amount (pounds shillings pence): ";
-    cin >> pounds1 >> shillings1 >> pence1;
+    cin >> fPound >> dot >> fShilling >> dot >> fPence;
 
-    int resultPounds, resultShillings, resultPence;
+    int rPound, rShilling, rPence;
 
-    if (operation == '+' || operation == '-') {
+    if (operate == '+' || operate == '-') {
         cout << "Enter second amount (pounds shillings pence): ";
-        cin >> pounds2 >> shillings2 >> pence2;
+        cin >> sPound >> dot >> sShilling >> dot >> sPence;
 
-        if (operation == '+') {
-            resultPounds = pounds1 + pounds2;
-            resultShillings = shillings1 + shillings2;
-            resultPence = pence1 + pence2;
+        if (operate == '+') {
+            rPound = fPound + sPound;
+            rShilling = fShilling + sShilling;
+            rPence = fPence + sPence;
         } else {
-            resultPounds = pounds1 - pounds2;
-            resultShillings = shillings1 - shillings2;
-            resultPence = pence1 - pence2;
+            rPound = fPound - sPound;
+            rShilling = fShilling - sShilling;
+            rPence = fPence - sPence;
         }
-    } else if (operation == '*') {
+    } else if (operate == '*') {
         cout << "Enter the multiplier: ";
         cin >> multiplier;
 
-        int totalPence = (pounds1 * 240 + shillings1 * 12 + pence1) * multiplier;
-        resultPounds = totalPence / 240;
-        resultShillings = (totalPence % 240) / 12;
-        resultPence = totalPence % 12;
+        int tPence = (fPound * 240 + fShilling * 12 + fPence) * multiplier;
+        rPound = tPence / 240;
+        rShilling = (tPence % 240) / 12;
+        rPence = tPence % 12;
     } else {
         cout << "Invalid operation!" << endl;
         return 1;
     }
 
-    if (resultPence >= 12) {
-        resultShillings += resultPence / 12;
-        resultPence %= 12;
+    if (rPence >= 12) {
+        rShilling += rPence / 12;
+        rPence %= 12;
     }
-    if (resultShillings >= 20) {
-        resultPounds += resultShillings / 20;
-        resultShillings %= 20;
-    }
-
-    if (resultPence < 0) {
-        resultShillings -= 1 + (-resultPence / 12);
-        resultPence = 12 - (-resultPence % 12);
-    }
-    if (resultShillings < 0) {
-        resultPounds -= 1 + (-resultShillings / 20);
-        resultShillings = 20 - (-resultShillings % 20);
+    if (rShilling >= 20) {
+        rPound += rShilling / 20;
+        rShilling %= 20;
     }
 
-    cout << "Result: " << resultPounds << " pounds, " << resultShillings << " shillings, " << resultPence << " pence" << endl;
+    if (rPence < 0) {
+        rShilling -= 1 + (-rPence / 12);
+        rPence = 12 - (-rPence % 12);
+    }
+    if (rShilling < 0) {
+        rPound -= 1 + (-rShilling / 20);
+        rShilling = 20 - (-rShilling % 20);
+    }
+
+    cout << "Result: " << rPound << " pounds, " << rShilling << " shillings, " << rPence << " pence" << endl;
 
     return 0;
 }
